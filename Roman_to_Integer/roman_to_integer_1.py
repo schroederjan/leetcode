@@ -72,9 +72,6 @@ if __name__ == '__main__':
     solution = Solution()
 
     test_dict = {
-        'I': 1,
-        'II': 2,
-        'III': 3,
         'IV': 4,
         'VI': 6,
         'XI': 11,
@@ -86,7 +83,7 @@ if __name__ == '__main__':
         'CM': 900,
         'MC': 1100,
         'LVIII': 58,
-        'MCMXCIV': 1994,  # TODO
+        'MCMXCIV': 1994,
     }
 
     def _check_solution(solution, should):
