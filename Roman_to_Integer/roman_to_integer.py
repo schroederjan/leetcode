@@ -16,10 +16,39 @@ class Solution():
         def _get_base_int(s) -> int:
             return self.roman_symbols_dict[s]
 
-        # eg. IV = 4 != 6
-        def _small_before_big(s) -> int:
-            int(s)
-            pass
+        def _solve_cases(int_list):
+            counter: int = 0
+            last: int = 0
+            for n in int_list:
+                # case IV = I - V (1-5) = 4
+                if n == 5 and last == 1:
+                    counter += n - last * 2
+                    last = n
+                # case IX = I - X (1-10) = 9
+                elif n == 10 and last == 1:
+                    counter += n - last * 2
+                    last = n
+                # case XL = X - L (10-50) = 40
+                elif n == 50 and last == 10:
+                    counter += n - last * 2
+                    last = n
+                # case XC = X - C (10-100) = 90
+                elif n == 100 and last == 10:
+                    counter += n - last * 2
+                    last = n
+                # case CD = C - D (100-500) = 400
+                elif n == 500 and last == 100:
+                    counter += n - last * 2
+                    last = n
+                # case CM = C - M (100-1000) = 900
+                elif n == 1000 and last == 100:
+                    counter += n - last * 2
+                    last = n
+                # case Normal
+                else:
+                    counter += n
+                    last = n
+            return counter
 
             # only single character input
         if s in self.roman_symbols_dict.keys():
@@ -32,8 +61,7 @@ class Solution():
             for string in string_list:
                 int_list.append(_get_base_int(string))
 
-            if 
-            return sum(int_list)
+            return _solve_cases(int_list)
 
         else:
             raise NotImplementedError
@@ -48,8 +76,17 @@ if __name__ == '__main__':
         'II': 2,
         'III': 3,
         'IV': 4,
-        'V': 5,
         'VI': 6,
+        'XI': 11,
+        'IX': 9,
+        'XL': 40,
+        'LX': 60,
+        'XC': 90,
+        'CX': 110,
+        'CM': 900,
+        'MC': 1100,
+        'LVIII': 58,
+        'MCMXCIV': 1994,  # TODO
     }
 
     def _check_solution(solution, should):
