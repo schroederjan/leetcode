@@ -20,9 +20,21 @@ llist_2 = list_to_llist(list_2)
 # print(llist_2.head.val)
 
 
+# shorter version
+def check_palindrome_2(test_list):
+    string, head = "", test_list.head
+    while head:
+        string += str(head.val)
+        head = head.next
+    if string == string[::-1]:
+        return True
+    return False
+
+
+# longer version
 def check_palindrome(test_list):
     # turning all values into string
-    print(test_list)
+    #  print(test_list) # for checking
     string = ''
     head = test_list.head
     while (head != None):
@@ -32,11 +44,16 @@ def check_palindrome(test_list):
     # checking if first and back in each iter. is the same
     n = len(string)
     for i in range(int(n/2)):
-        print(string[i])
-        print(string[int(n-i-1)])
+        #  print(string[i]) # for checking
+        #  print(string[int(n-i-1)]) # fro checking
         if (string[i] != string[n-i-1]):
             return False
     return True
 
+
+print('######')
 print(check_palindrome(llist_2))
 print(check_palindrome(llist_1))
+print('######')
+print(check_palindrome_2(llist_2))
+print(check_palindrome_2(llist_1))
