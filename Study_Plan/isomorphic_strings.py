@@ -1,7 +1,8 @@
 from typing import List
 
 
-class Solution:
+# first approach
+class Solution_1:
     def isIsomorphic(self, s: str, t: str) -> bool:
         if len(s) != len(t):
             return False
@@ -10,44 +11,55 @@ class Solution:
         t_s_dict = {}
 
         for c1, c2 in zip(s, t):
-
-            print(c1)
-            print(c2)
-
             # only write each character only once
             if c1 not in s_t_dict and c2 not in t_s_dict:
                 s_t_dict[c1] = c2
                 t_s_dict[c2] = c1
 
-                print(s_t_dict)
-                print(t_s_dict)
-
-            #
+            # if current char is not in each others list
             elif s_t_dict[c1] != c2 or t_s_dict[c2] != c1:
-
-                print(s_t_dict)
-                print(t_s_dict)
-
                 return False
 
         return True
 
-        # return False
+
+# simplified approach using set
+class Solution_2:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        return len(set(s)) == len(set(t)) == len(set(zip(s, t)))
 
 
-# one liner
-#  class Solution:
-#      def isIsomorphic(self, s: str, t: str) -> bool:
-#          return len(set(s)) == len(set(t)) == len(set(zip(s, t)))
+# simplified approach using set
+class Solution_3:
+    def transfromString(self, s: str) -> str:
+        index_map = {}
+        new_str = []
+
+        for i, c in enumerate(s):
+            if c not in index_map:
+                index_map[c] = i
+            new_str.append(str(index_map[c]))
+
+        return " ".join(new_str)
+
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        return self.transfromString(s) == self.transfromString(t)
 
 
 if __name__ == '__main__':
-    sol = Solution()
+    sol_1 = Solution_1()
+    sol_2 = Solution_2()
+    sol_3 = Solution_3()
 
     #  s = "egg"
     #  t = "add"
 
-    s = "foo"
-    t = "bar"
+    s = "egson"
+    t = "adsin"
 
-    print(sol.isIsomorphic(s, t))
+    #  s = "testing"
+    #  t = "barteng"
+
+    print(sol_1.isIsomorphic(s, t))
+    print(sol_2.isIsomorphic(s, t))
+    print(sol_3.isIsomorphic(s, t))
