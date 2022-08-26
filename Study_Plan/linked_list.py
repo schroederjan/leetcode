@@ -1,0 +1,1 @@
+../Easy/Palindrome_Linked_List/linked_list.py
