@@ -19,8 +19,9 @@ class Solution():
         """
         res = ""
         for key, val in self.roman_symbols_dict.items():
-            res += val * (num // key)
-            num -= key * (num // key)
+            temp = (num // key)
+            res += val * temp
+            num -= key * temp
         print(res)
         return res
 
@@ -28,4 +29,5 @@ class Solution():
 if __name__ == '__main__':
 
     sol = Solution()
-    sol.intToRoman(199)
+    # sol.intToRoman(199)
+    sol.intToRoman(5000)
